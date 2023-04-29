@@ -26,9 +26,9 @@ export default function BlogPosts() {
   function formatDate(dateString) {
     const options = { day: 'numeric', month: 'long', year: 'numeric' };
     const date = new Date(dateString);
-    const day = `<strong>${date.getDate()}</strong>`;
-    const formattedDate = date.toLocaleDateString('pt-BR', options).replace(/(^|\s)de\s/g, '$1');
-    return formattedDate.replace(date.getDate(), day);
+    return date.toLocaleDateString('pt-BR', options)
+      .replace(/(^|\s)de\s/g, '$1')
+      .replace(date.getDate(), `<strong>${date.getDate()}</strong>`);
   }
 
   return(
@@ -50,9 +50,13 @@ export default function BlogPosts() {
                   <span className='post_title'>
                     <h3>{post.title}</h3>
                   </span>
-                  <span className='post_date'>
+                  {/* <span className='post_date'>
                     {formatDate(post.publishedAt)}
+                  </span> */}
+                  <span className='post_date' 
+                    dangerouslySetInnerHTML={{__html: formatDate(post.publishedAt)}}>
                   </span>
+
                 </span>
               </Link>
             </article>
