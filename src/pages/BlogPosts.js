@@ -7,7 +7,7 @@ export default function BlogPosts() {
 
   useEffect(() => {
     sanityClient
-      .fetch(`*[_type == "post"]{
+      .fetch(`*[_type == "post"] | order(publishedAt desc) {
         title,
         slug,
         mainImage{
@@ -16,11 +16,20 @@ export default function BlogPosts() {
             url
           },
           alt
-        }
+        },
+        publishedAt
       }`)
       .then((data) => setPost(data))
       .catch(console.error);
   }, []);
+
+  function formatDate(dateString) {
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    const date = new Date(dateString);
+    const day = `<strong>${date.getDate()}</strong>`;
+    const formattedDate = date.toLocaleDateString('pt-BR', options).replace(/(^|\s)de\s/g, '$1');
+    return formattedDate.replace(date.getDate(), day);
+  }
 
   return(
     <main>
@@ -40,6 +49,9 @@ export default function BlogPosts() {
                   </figure>
                   <span className='post_title'>
                     <h3>{post.title}</h3>
+                  </span>
+                  <span className='post_date'>
+                    {formatDate(post.publishedAt)}
                   </span>
                 </span>
               </Link>
