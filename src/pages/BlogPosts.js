@@ -9,6 +9,7 @@ export default function BlogPosts() {
     sanityClient
       .fetch(`*[_type == "post"] | order(publishedAt desc) {
         title,
+        sub_title,
         slug,
         mainImage{
           asset-> {
@@ -49,6 +50,7 @@ export default function BlogPosts() {
                   </figure>
                   <span className='post_title'>
                     <h3>{post.title}</h3>
+                    <p>{post.sub_title}</p>
                   </span>
                   {/* <span className='post_date'>
                     {formatDate(post.publishedAt)}
