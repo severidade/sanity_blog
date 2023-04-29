@@ -4,7 +4,7 @@ export default function Home() {
 
   return(
     <div>
-      <h1>Página Home</h1>
+      <h1>Essa é a Página Home</h1>
     </div>
   )
 }
