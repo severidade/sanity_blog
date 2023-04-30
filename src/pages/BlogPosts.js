@@ -38,6 +38,7 @@ export default function BlogPosts() {
         <h1>Blog Posts Página</h1>
         <h2>Bem vindo ao meu blog</h2>
         <div className='containar_posts'>
+        {/* O operador && é usado para verificar se postData tem algum valor antes de executar o método map. Se postData for null ou undefined, a expressão retorna false e o método map não é executado, evitando possíveis erros. */}
           {postData && postData.map((post, index) =>(
             <article className='post'>
               <Link to={"/post/" + post.slug.current} key={post.slug.current}>
@@ -58,11 +59,9 @@ export default function BlogPosts() {
                   <span className='post_date' 
                     dangerouslySetInnerHTML={{__html: formatDate(post.publishedAt)}}>
                   </span>
-
                 </span>
               </Link>
             </article>
-
           ))}
         </div>
       </section>
