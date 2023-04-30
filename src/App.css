@@ -27,3 +27,25 @@ body {
   height: 100%;
   object-fit: cover;
 }
+
+.container_post  ul {
+  background-color: blue;
+}
+
+.container_author {
+  background: tomato;
+}
+
+.container_main_image{
+  width: 100vw;
+  height: 500px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.container_main_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}

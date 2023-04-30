@@ -55,10 +55,12 @@ export default function SinglePost() {
               </div>
             </div>
           </div>
-          <img
-            src={singlePost.mainImage.asset.url}
-            alt={singlePost.title}
-          />
+          <figure className='container_main_image'>
+            <img
+              src={singlePost.mainImage.asset.url}
+              alt={singlePost.title}
+            />
+          </figure>
         </header>
         <div className='container_post'>
           <BlockContent blocks={singlePost.body} projectId="70kqnxpw" dataset="production"/>
