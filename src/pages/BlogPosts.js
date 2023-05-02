@@ -18,6 +18,13 @@ export default function BlogPosts() {
           },
           alt
         },
+        thumbnailImage{
+          asset-> {
+            _id,
+            url
+          },
+          alt
+        },
         publishedAt
       }`)
       .then((data) => setPost(data))
@@ -32,6 +39,10 @@ export default function BlogPosts() {
       .replace(date.getDate(), `<strong>${date.getDate()}</strong>`);
   }
 
+   if(!postData) return <div>Carregendo...</div>;
+
+   console.log(postData[0].thumbnailImage.asset.url);
+
   return(
     <main>
       <section>
@@ -45,9 +56,9 @@ export default function BlogPosts() {
                 <span className='container_post'>
                   <figure className='container_img_post'>
                     <img
-                      src={post.mainImage.asset.url}
-                      alt={post.mainImage.alt}
-                    />
+                      src={ post.thumbnailImage ? post.thumbnailImage.asset.url : post.mainImage.asset.url }
+                      alt={`Esta é a thumbnail do post "${post.title}"`}
+/>
                   </figure>
                   <span className='post_title'>
                     <h3>{post.title}</h3>
